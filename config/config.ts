@@ -1,4 +1,4 @@
-import { Connection, PublicKey, Keypair } from "@solana/web3.js";
+import { Connection, PublicKey, Keypair } from '@solana/web3.js';
 import {
   TxVersion,
   Token,
@@ -6,14 +6,18 @@ import {
   TOKEN_PROGRAM_ID,
   SOL,
   Percent,
-} from "@raydium-io/raydium-sdk";
+} from '@raydium-io/raydium-sdk';
+import bs58 from 'bs58';
+import base58 from 'bs58';
 
 // REPLACEME - replace market_id
-export const market_id = new PublicKey("");
+export const market_id = new PublicKey(
+  '5sJGiZ8pLkRkdoaDVbCoDNf7JBExCx7C1jJH8sxw57QM'
+);
 
-export const rpc_https_url = "";
+export const rpc_https_url = '';
 
-export const blockEngineUrl = "";
+export const blockEngineUrl = '';
 
 export const input_baseMint_tokens_percentage = 1; //ABC-Mint amount of tokens you want to add in Lp e.g. 1% = 100%. 0.9= 90%
 export const delay_pool_open_time = Number(0); //dont change it because then you wont be able to perform swap in bundle.
@@ -37,7 +41,8 @@ export const sell_remove_fees = 1_000_000;
 export const slippage = new Percent(15, 100);
 
 // priv keys
-const jito_auth_private_key = [];
+const jito_auth_private_key =
+  '4ywp7iP8DnfJBvt5vB8BSLdvRgSgJCucvc7vJhS6ndirt9FV398jUDPbazrDWxXSEUs4ksaqhVyHhyZ4b3sFCUAw';
 const wallet_2_pay_jito_fees = [];
 const LP_wallet_private_key = [];
 const swap_wallet_private_key = [];
@@ -46,7 +51,7 @@ const swap2_wallet_private_key = [];
 
 // ignore these
 export const jito_auth_keypair = Keypair.fromSecretKey(
-  new Uint8Array(jito_auth_private_key)
+  new Uint8Array(base58.decode(jito_auth_private_key))
 );
 export const wallet_2_pay_jito_fees_keypair = Keypair.fromSecretKey(
   new Uint8Array(wallet_2_pay_jito_fees)
@@ -65,25 +70,25 @@ export const swap2_wallet_keypair = Keypair.fromSecretKey(
 );
 
 export const lookupTableCache = {};
-export const connection = new Connection(rpc_https_url, "confirmed");
+export const connection = new Connection(rpc_https_url, 'confirmed');
 export const makeTxVersion = TxVersion.V0; // LEGACY
 export const addLookupTableInfo = undefined; // only mainnet. other = undefined
 
 export const DEFAULT_TOKEN = {
   SOL: SOL,
-  SOL1: new Currency(9, "USDC", "USDC"),
+  SOL1: new Currency(9, 'USDC', 'USDC'),
   WSOL: new Token(
     TOKEN_PROGRAM_ID,
-    new PublicKey("So11111111111111111111111111111111111111112"),
+    new PublicKey('So11111111111111111111111111111111111111112'),
     9,
-    "WSOL",
-    "WSOL"
+    'WSOL',
+    'WSOL'
   ),
   USDC: new Token(
     TOKEN_PROGRAM_ID,
-    new PublicKey("EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"),
+    new PublicKey('EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v'),
     6,
-    "USDC",
-    "USDC"
+    'USDC',
+    'USDC'
   ),
 };
